@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Pane } from "tweakpane";
 import { Box, boxCollusion, destroyGameObject } from "./geometrys";
-import { keyDown, keys, keyUp } from "./controlEvents";
+import { keys } from "./controlEvents";
 import { endGame } from "./endGame";
 
 // initialize pane
@@ -78,7 +78,9 @@ const camera = new THREE.PerspectiveCamera(
 // camera.position.y = 10;
 // camera.position.x = 0;
 
-camera.position.set(0, 10, 12.5);
+// camera.position.set(0, 10, 12.5);
+camera.position.set(0, 13, 17);
+camera.lookAt(0, -15, -15);
 
 const f1 = pane.addFolder({ title: "Camera Properties" });
 f1.addInput(camera.position, "x", {
@@ -114,10 +116,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // add controls
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.maxDistance = 20;
-controls.minDistance = 20;
+// const controls = new OrbitControls(camera, canvas);
+// controls.enableDamping = true;
+// controls.maxDistance = 20;
+// controls.minDistance = 20;
 
 // add resize listener
 window.addEventListener("resize", () => {
@@ -147,7 +149,7 @@ const renderloop = () => {
   if (keys.front.pressed) cube.velocity.z = -0.1;
   else if (keys.back.pressed) cube.velocity.z = 0.1;
 
-  controls.update();
+  // controls.update();
   renderer.render(scene, camera);
   const animationId = window.requestAnimationFrame(renderloop);
   frame++;
