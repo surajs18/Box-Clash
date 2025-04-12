@@ -81,6 +81,11 @@ const camera = new THREE.PerspectiveCamera(
 // camera.position.set(0, 10, 12.5);
 camera.position.set(0, 13, 17);
 camera.lookAt(0, -15, -15);
+// console.log(
+//   cube.position.x - camera.position.x,
+//   cube.position.y - camera.position.y,
+//   cube.position.z - camera.position.z
+// );
 
 const f1 = pane.addFolder({ title: "Camera Properties" });
 f1.addInput(camera.position, "x", {
@@ -136,7 +141,7 @@ const maxJumpHeight = cube.height / 1.6;
 
 // render loop
 const renderloop = () => {
-  cube.update(ground);
+  cube.update(ground, camera);
 
   cube.velocity.x = 0;
   cube.velocity.z = 0;

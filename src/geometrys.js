@@ -45,7 +45,7 @@ export class Box extends THREE.Mesh {
     this.zAcceleration = zAcceleration;
   }
 
-  update(referenceObject = null) {
+  update(referenceObject = null, camera = null) {
     this.bottom = this.position.y - this.height / 2;
     this.top = this.position.y + this.height / 2;
     this.left = this.position.x - this.width / 2;
@@ -62,6 +62,15 @@ export class Box extends THREE.Mesh {
     this.moveX();
     this.moveZ();
     this.applyGravity(referenceObject);
+
+    // adjust camera
+    if (camera) {
+      camera.position.set(
+        this.position.x + 0,
+        this.position.y + 13,
+        this.position.z + 17
+      );
+    }
   }
 
   applyTextures({ texturePaths, stretch = false }) {
